@@ -23,6 +23,7 @@ Location: ```src/lib/components/layout/Navbar```
 
 
 ## Screenshot
+<img width="1181" alt="mrn-input" src="https://github.com/user-attachments/assets/5b6b6c4c-29db-4ee8-9696-bf857a1adcad">
 
 
 ## Implementation Details
