@@ -13,6 +13,7 @@
 
 	const i18n = getContext('i18n');
 
+	export let mrnInput = '';
 	export let modelIds = [];
 	export let models = [];
 
@@ -103,7 +104,7 @@
 						{/if}
 					{:else}
 						<div class=" font-medium text-gray-400 dark:text-gray-500 line-clamp-1 font-p">
-							{$i18n.t('How can I help you today?')}
+							{$i18n.t(`How can I help you today, ${mrnInput}?`)}
 						</div>
 					{/if}
 				</div>

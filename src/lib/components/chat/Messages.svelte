@@ -14,6 +14,7 @@
 	import { copyToClipboard, findWordIndices } from '$lib/utils';
 	import CompareMessages from './Messages/CompareMessages.svelte';
 	import { stringify } from 'postcss';
+	import { mrnInput } from '$lib/stores';
 
 	const i18n = getContext('i18n');
 
@@ -257,6 +258,7 @@
 <div class="h-full flex">
 	{#if messages.length == 0}
 		<Placeholder
+			mrnInput={$mrnInput}
 			modelIds={selectedModels}
 			submitPrompt={async (p) => {
 				let text = p;

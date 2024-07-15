@@ -37,16 +37,9 @@
 	} from '$lib/utils';
 
 	import { generateChatCompletion } from '$lib/apis/ollama';
-	import {
-		addTagById,
-		createNewChat,
-		deleteTagById,
-		getAllChatTags,
-		getChatById,
-		getChatList,
-		getTagsById,
-		updateChatById
-	} from '$lib/apis/chats';
+	import { addTagById, createNewChat, deleteTagById } from '$lib/apis/chats';
+	import { writable } from 'svelte/store';
+
 	import { generateOpenAIChatCompletion } from '$lib/apis/openai';
 	import { runWebSearch } from '$lib/apis/rag';
 	import { createOpenAITextStream } from '$lib/apis/streaming';

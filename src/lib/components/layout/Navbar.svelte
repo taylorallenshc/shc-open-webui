@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
-
 	import {
 		WEBUI_NAME,
 		chatId,
@@ -10,7 +9,8 @@
 		showArchivedChats,
 		showSettings,
 		showSidebar,
-		user
+		user,
+		mrnInput
 	} from '$lib/stores';
 
 	import { slide } from 'svelte/transition';
@@ -37,7 +37,6 @@
 
 	let showShareChatModal = false;
 	let showDownloadChatModal = false;
-	let mrn = ''; // Add state for MRN input
 </script>
 
 <ShareChatModal bind:show={showShareChatModal} chatId={$chatId} />
@@ -68,7 +67,9 @@
 				{/if}
 			</div>
 
-			<div class="self-start flex flex-none items-center text-gray-600 dark:text-gray-400 space-x-4">
+			<div
+				class="self-start flex flex-none items-center text-gray-600 dark:text-gray-400 space-x-4"
+			>
 				{#if shareEnabled && chat && chat.id}
 					<Menu
 						{chat}
@@ -149,7 +150,7 @@
 					type="text"
 					class="mr-3 px-3 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
 					placeholder="Enter MRN"
-					bind:value={mrn}
+					bind:value={$mrnInput}
 				/>
 
 				{#if $user !== undefined}
