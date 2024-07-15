@@ -11,6 +11,29 @@
 [![Discord](https://img.shields.io/badge/Discord-Open_WebUI-blue?logo=discord&logoColor=white)](https://discord.gg/5rJgQTnV4s)
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/tjbck)
 
+# MRN Input
+
+I added a Medical Record Number (MRN) input field to the Navbar. This input allows users to specify an MRN, which will later  be used to tailor the model's output specific to the entered MRN.
+
+## File Modified
+
+File: ```Navbar.svelte```
+
+Location: ```src/lib/components/layout/Navbar```
+
+
+## Screenshot
+
+
+## Implementation Details
+The MRN input field is placed on the right side of the Navbar. The following changes were made to ```Navbar.svelte```:
+
+State Management: Added a LOCAL state variable mrn to manage the input value. Later we will need to hoist the data above the parent chat component and then pass to the child component as props.
+
+---
+
+
+
 Open WebUI is an [extensible](https://github.com/open-webui/pipelines), feature-rich, and user-friendly self-hosted WebUI designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs. For more information, be sure to check out our [Open WebUI Documentation](https://docs.openwebui.com/).
 
 ![Open WebUI Demo](./demo.gif)
