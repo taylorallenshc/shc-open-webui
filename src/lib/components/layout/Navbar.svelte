@@ -37,11 +37,12 @@
 
 	let showShareChatModal = false;
 	let showDownloadChatModal = false;
+	let mrn = ''; // Add state for MRN input
 </script>
 
 <ShareChatModal bind:show={showShareChatModal} chatId={$chatId} />
-<nav id="nav" class=" sticky py-2.5 top-0 flex flex-row justify-center z-10">
-	<div class=" flex max-w-full w-full mx-auto px-5 pt-0.5 md:px-[1rem]">
+<nav id="nav" class="sticky py-2.5 top-0 flex flex-row justify-center z-10">
+	<div class="flex max-w-full w-full mx-auto px-5 pt-0.5 md:px-[1rem]">
 		<div class="flex items-center w-full max-w-full">
 			<div
 				class="{$showSidebar
@@ -55,7 +56,7 @@
 						showSidebar.set(!$showSidebar);
 					}}
 				>
-					<div class=" m-auto self-center">
+					<div class="m-auto self-center">
 						<MenuLines />
 					</div>
 				</button>
@@ -67,9 +68,7 @@
 				{/if}
 			</div>
 
-			<div class="self-start flex flex-none items-center text-gray-600 dark:text-gray-400">
-				<!-- <div class="md:hidden flex self-center w-[1px] h-5 mx-2 bg-gray-300 dark:bg-stone-700" /> -->
-
+			<div class="self-start flex flex-none items-center text-gray-600 dark:text-gray-400 space-x-4">
 				{#if shareEnabled && chat && chat.id}
 					<Menu
 						{chat}
@@ -85,7 +84,7 @@
 							class="hidden md:flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 							id="chat-context-menu-button"
 						>
-							<div class=" m-auto self-center">
+							<div class="m-auto self-center">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
@@ -107,13 +106,13 @@
 
 				<Tooltip content={$i18n.t('Controls')}>
 					<button
-						class=" flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
+						class="flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 						on:click={() => {
 							showControls = !showControls;
 						}}
 					>
-						<div class=" m-auto self-center">
-							<AdjustmentsHorizontal className=" size-5" strokeWidth="0.5" />
+						<div class="m-auto self-center">
+							<AdjustmentsHorizontal className="size-5" strokeWidth="0.5" />
 						</div>
 					</button>
 				</Tooltip>
@@ -121,14 +120,14 @@
 				<Tooltip content={$i18n.t('New Chat')}>
 					<button
 						id="new-chat-button"
-						class=" flex {$showSidebar
+						class="flex {$showSidebar
 							? 'md:hidden'
 							: ''} cursor-pointer px-2 py-2 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 						on:click={() => {
 							initNewChat();
 						}}
 					>
-						<div class=" m-auto self-center">
+						<div class="m-auto self-center">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 20 20"
@@ -146,6 +145,13 @@
 					</button>
 				</Tooltip>
 
+				<input
+					type="text"
+					class="mr-3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+					placeholder="Enter MRN"
+					bind:value={mrn}
+				/>
+
 				{#if $user !== undefined}
 					<UserMenu
 						className="max-w-[200px]"
@@ -160,7 +166,7 @@
 							class="select-none flex rounded-xl p-1.5 w-full hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 							aria-label="User Menu"
 						>
-							<div class=" self-center">
+							<div class="self-center">
 								<img
 									src={$user.profile_image_url}
 									class="size-6 object-cover rounded-full"
