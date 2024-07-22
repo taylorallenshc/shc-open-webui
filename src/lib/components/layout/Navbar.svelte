@@ -9,8 +9,7 @@
 		showArchivedChats,
 		showSettings,
 		showSidebar,
-		user,
-		mrnInput
+		user
 	} from '$lib/stores';
 
 	import { slide } from 'svelte/transition';
@@ -145,13 +144,6 @@
 						</div>
 					</button>
 				</Tooltip>
-
-				<input
-					type="text"
-					class="mr-3 px-3 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-					placeholder="Enter MRN"
-					bind:value={$mrnInput}
-				/>
 
 				{#if $user !== undefined}
 					<UserMenu

@@ -258,7 +258,6 @@
 <div class="h-full flex">
 	{#if messages.length == 0}
 		<Placeholder
-			mrnInput={$mrnInput}
 			modelIds={selectedModels}
 			submitPrompt={async (p) => {
 				let text = p;

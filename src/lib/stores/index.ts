@@ -43,6 +43,8 @@ export const showChangelog = writable(false);
 export const showCallOverlay = writable(false);
 
 export const mrnInput = writable('');
+export const frameworks = writable([]);
+export const loading = writable(false);
 
 export type Model = OpenAIModel | OllamaModel;
 

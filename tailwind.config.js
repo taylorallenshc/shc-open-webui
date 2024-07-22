@@ -5,6 +5,8 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				'stanford-light': '#B83A4B',
+				'stanford-dark': '#820000',
 				gray: {
 					50: '#f9f9f9',
 					100: '#ececec',
