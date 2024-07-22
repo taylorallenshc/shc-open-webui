@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getContext, onMount, tick } from 'svelte';
-
+	import { getContext } from 'svelte';
 	import Modal from '$lib/components/common/Modal.svelte';
+
 	const i18n = getContext('i18n');
 
 	export let show = false;
@@ -11,7 +11,7 @@
 
 	$: if (citation) {
 		mergedDocuments = citation.document?.map((c, i) => {
-			console.log(mergedDocuments);
+			console.log(c);
 			return {
 				source: citation.source,
 				document: c,
@@ -23,9 +23,14 @@
 
 <Modal size="lg" bind:show>
 	<div>
-		<div class=" flex justify-between dark:text-gray-300 px-5 pt-4 pb-2">
-			<div class=" text-lg font-medium self-center capitalize">
-				{$i18n.t('Citation')}
+		<div class="flex justify-between dark:text-gray-300 px-5 pt-4 pb-2">
+			<div>
+				<div class="text-xl font-medium self-center capitalize">
+					{$i18n.t('Citations')}
+				</div>
+				<div class="text-sm font-regular text-gray-600">
+					{$i18n.t('Relevant citations from the document.')}
+				</div>
 			</div>
 			<button
 				class="self-center"
@@ -46,33 +51,42 @@
 			</button>
 		</div>
 
-		<div class="flex flex-col md:flex-row w-full px-6 pb-5 md:space-x-4">
-			<div
-				class="flex flex-col w-full dark:text-gray-200 overflow-y-scroll max-h-[22rem] scrollbar-hidden"
-			>
-				{#each mergedDocuments as document, documentIdx}
-					<div class="flex flex-col w-full">
-						<div class="text-sm font-medium dark:text-gray-300">
-							{$i18n.t('Source')}
-						</div>
-						<div class="text-sm dark:text-gray-400">
+		<div class="grid gap-4 py-4 max-h-[400px] overflow-auto px-12">
+			{#each mergedDocuments as document, documentIdx}
+				<div
+					class="grid gap-2 bg-muted/20 p-4 rounded-md cursor-pointer hover:bg-muted/30 transition-colors"
+				>
+					<div class="flex items-center justify-between">
+						<div class="text-sm text-muted-foreground truncate max-w-[200px] text-gray-600">
 							{document.source?.name ?? $i18n.t('No source available')}
 						</div>
-					</div>
-					<div class="flex flex-col w-full">
-						<div class=" text-sm font-medium dark:text-gray-300">
-							{$i18n.t('Content')}
+						<div class="flex flex-row gap-4">
+							<div class="text-sm text-muted-foreground text-gray-500">
+								{document.metadata?.patient ?? $i18n.t('Read More')}
+							</div>
 						</div>
-						<pre class="text-sm dark:text-gray-400 whitespace-pre-line">
-							{document.document}
-						</pre>
+						<!-- <div class="text-sm text-muted-foreground text-gray-500">
+							{document.metadata?.patient ?? $i18n.t('No patient info')}
+						</div> -->
 					</div>
+					<div class="text-xs text-muted-foreground text-gray-500">
+						{`Document Length: ${document.document.length} characters`}
+					</div>
+					<p class="text-sm line-clamp-2">
+						{document.document}
+					</p>
+				</div>
+				{#if documentIdx !== mergedDocuments.length - 1}
+					<hr class="dark:border-gray-850 my-3 mx-6" />
+				{/if}
+			{/each}
+		</div>
 
-					{#if documentIdx !== mergedDocuments.length - 1}
-						<hr class=" dark:border-gray-850 my-3" />
-					{/if}
-				{/each}
-			</div>
+		<div class="flex justify-end p-4">
+			<button
+				on:click={() => (show = false)}
+				class="mt-4 px-4 py-2 bg-stanford-dark text-white rounded-md">Close</button
+			>
 		</div>
 	</div>
 </Modal>

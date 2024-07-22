@@ -1,0 +1,11 @@
+Patient: John Doe
+
+Sticky Notes:
+	•	Date: 2024-07-15
+	•	Time: 11:00 AM
+	•	Note: Patient John Doe scheduled for an ECG at 12:00 PM.
+	•	Author: Sarah Williams, RN
+	•	Date: 2024-07-15
+	•	Time: 03:00 PM
+	•	Note: Follow-up with Dr. Smith regarding John Doe’s ECG results.
+	•	Author: Sarah Williams, RN

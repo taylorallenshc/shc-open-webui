@@ -1,0 +1,11 @@
+Patient: John Doe
+
+Nurse Notes:
+	•	Date: 2024-07-15
+	•	Time: 10:30 AM
+	•	Note: Patient is experiencing mild chest pain and shortness of breath. Administered 0.4mg Nitroglycerin sublingually. Vital signs: BP 140/90, HR 98 bpm, SpO2 95% on room air. Monitoring for any changes. Doctor notified.
+	•	Nurse: Sarah Williams, RN
+	•	Date: 2024-07-15
+	•	Time: 04:00 PM
+	•	Note: Patient reports no further chest pain. Vital signs stable: BP 130/85, HR 80 bpm, SpO2 97%. ECG results pending. Advised to avoid physical exertion.
+	•	Nurse: Sarah Williams, RN

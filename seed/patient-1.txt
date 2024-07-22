@@ -1,0 +1,54 @@
+Patient: John Doe
+
+Nurse Notes:
+
+	•	Date: 2024-07-15
+	•	Time: 10:30 AM
+	•	Note: Patient is experiencing mild chest pain and shortness of breath. Administered 0.4mg Nitroglycerin sublingually. Vital signs: BP 140/90, HR 98 bpm, SpO2 95% on room air. Monitoring for any changes. Doctor notified.
+	•	Nurse: Sarah Williams, RN
+	•	Date: 2024-07-15
+	•	Time: 04:00 PM
+	•	Note: Patient reports no further chest pain. Vital signs stable: BP 130/85, HR 80 bpm, SpO2 97%. ECG results pending. Advised to avoid physical exertion.
+	•	Nurse: Sarah Williams, RN
+
+Sticky Notes:
+
+	•	Date: 2024-07-15
+	•	Time: 11:00 AM
+	•	Note: Patient John Doe scheduled for an ECG at 12:00 PM.
+	•	Author: Sarah Williams, RN
+	•	Date: 2024-07-15
+	•	Time: 03:00 PM
+	•	Note: Follow-up with Dr. Smith regarding John Doe’s ECG results.
+	•	Author: Sarah Williams, RN
+
+Medication Records:
+
+	•	Date: 2024-07-15
+	•	Time: 10:30 AM
+	•	Medication: Nitroglycerin 0.4mg sublingual
+	•	Administered By: Sarah Williams, RN
+	•	Date: 2024-07-15
+	•	Time: 12:00 PM
+	•	Medication: Aspirin 81mg PO
+	•	Administered By: Sarah Williams, RN
+
+Lab Results:
+
+	•	Test: Troponin I
+	•	Date: 2024-07-15
+	•	Time: 01:00 PM
+	•	Result: 0.04 ng/mL (Normal)
+	•	Performed By: UC Davis Lab
+	•	Test: ECG
+	•	Date: 2024-07-15
+	•	Time: 12:30 PM
+	•	Result: Pending
+	•	Performed By: UC Davis Cardiology
+
+Appointment Reminders:
+
+	•	Date: 2024-07-16
+	•	Time: 10:00 AM
+	•	Appointment: Follow-up with Dr. Smith
+	•	Note: Review ECG and lab results.

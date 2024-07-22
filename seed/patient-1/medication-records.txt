@@ -1,0 +1,11 @@
+Patient: John Doe
+
+Medication Records:
+	•	Date: 2024-07-15
+	•	Time: 10:30 AM
+	•	Medication: Nitroglycerin 0.4mg sublingual
+	•	Administered By: Sarah Williams, RN
+	•	Date: 2024-07-15
+	•	Time: 12:00 PM
+	•	Medication: Aspirin 81mg PO
+	•	Administered By: Sarah Williams, RN
