@@ -26,6 +26,8 @@
 		selectedModelIdx = models.length - 1;
 	}
 
+	$: console.log('TIMEFRAME', timeframe);
+
 	$: models = modelIds.map((id) => models.find((m) => m.id === id));
 
 	onMount(() => {
@@ -53,9 +55,9 @@
 
 	const encounterOptions = [
 		{ label: "Today's Encounter", value: 'today' },
-		{ label: '1 Month', value: '1month' },
-		{ label: '1 Year', value: '1year' },
-		{ label: 'All Time', value: 'alltime' }
+		{ label: '1 Month', value: 'one-month' },
+		{ label: '1 Year', value: 'one-year' },
+		{ label: 'All Time', value: 'all-time' }
 	];
 </script>
 

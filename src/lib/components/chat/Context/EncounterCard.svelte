@@ -6,12 +6,7 @@
 	export let onSelect: () => void;
 </script>
 
-<div
-	class={customStyles}
-	on:click={() => {
-		onSelect();
-	}}
->
+<div class={customStyles} on:click={onSelect}>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		width="24"

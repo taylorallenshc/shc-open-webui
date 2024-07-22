@@ -1,0 +1,54 @@
+Patient: Mary Smith
+
+Nurse Notes:
+
+	•	Date: 2024-07-15
+	•	Time: 09:00 AM
+	•	Note: Patient reports severe headache and nausea. Administered 4mg Ondansetron IV for nausea. Vital signs: BP 130/85, HR 72 bpm, SpO2 98%. Encouraged rest and fluid intake. Awaiting lab results.
+	•	Nurse: Emily Johnson, RN
+	•	Date: 2024-07-15
+	•	Time: 01:00 PM
+	•	Note: Patient’s headache has improved, nausea subsiding. Vital signs: BP 125/80, HR 70 bpm, SpO2 99%. Lab results indicate mild dehydration. IV fluids continue. Advised patient to increase oral fluid intake.
+	•	Nurse: Emily Johnson, RN
+
+Sticky Notes:
+
+	•	Date: 2024-07-15
+	•	Time: 09:30 AM
+	•	Note: Ensure to check on Mary Smith’s lab results by 1:00 PM.
+	•	Author: Emily Johnson, RN
+	•	Date: 2024-07-15
+	•	Time: 12:00 PM
+	•	Note: Remind patient to drink at least 8 glasses of water today.
+	•	Author: Emily Johnson, RN
+
+Medication Records:
+
+	•	Date: 2024-07-15
+	•	Time: 09:00 AM
+	•	Medication: Ondansetron 4mg IV
+	•	Administered By: Emily Johnson, RN
+	•	Date: 2024-07-15
+	•	Time: 11:00 AM
+	•	Medication: Acetaminophen 500mg PO
+	•	Administered By: Emily Johnson, RN
+
+Lab Results:
+
+	•	Test: Complete Blood Count (CBC)
+	•	Date: 2024-07-15
+	•	Time: 10:00 AM
+	•	Result: Normal
+	•	Performed By: UC Davis Lab
+	•	Test: Electrolytes
+	•	Date: 2024-07-15
+	•	Time: 10:00 AM
+	•	Result: Sodium: 138 mmol/L, Potassium: 4.2 mmol/L, Chloride: 102 mmol/L
+	•	Performed By: UC Davis Lab
+
+Appointment Reminders:
+
+	•	Date: 2024-07-16
+	•	Time: 09:00 AM
+	•	Appointment: Follow-up with Dr. Johnson
+	•	Note: Review hydration status and overall health progress.
