@@ -46,6 +46,8 @@ export const mrnInput = writable('');
 export const frameworks = writable([]);
 export const loading = writable(false);
 
+export const formCompleted = writable(false);
+
 export type Model = OpenAIModel | OllamaModel;
 
 type BaseModel = {

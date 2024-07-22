@@ -25,7 +25,8 @@
 		user,
 		socket,
 		showCallOverlay,
-		tools
+		tools,
+		formCompleted
 	} from '$lib/stores';
 	import {
 		convertMessagesToHistory,
@@ -37,7 +38,7 @@
 	} from '$lib/utils';
 
 	import { generateChatCompletion } from '$lib/apis/ollama';
-	import { addTagById, createNewChat, deleteTagById } from '$lib/apis/chats';
+	import { addTagById, createNewChat, deleteTagById, getChatList } from '$lib/apis/chats';
 	import { writable } from 'svelte/store';
 
 	import { generateOpenAIChatCompletion } from '$lib/apis/openai';
@@ -395,6 +396,11 @@
 	const submitPrompt = async (userPrompt, { _raw = false } = {}) => {
 		let _responses = [];
 		console.log('submitPrompt', $chatId);
+
+		if (!$formCompleted) {
+			toast.error($i18n.t('Please input your search criteria before starting the chat.'));
+			return;
+		}
 
 		selectedModels = selectedModels.map((modelId) =>
 			$models.map((m) => m.id).includes(modelId) ? modelId : ''
