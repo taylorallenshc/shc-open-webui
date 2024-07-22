@@ -11,6 +11,7 @@
 
 	$: if (citation) {
 		mergedDocuments = citation.document?.map((c, i) => {
+			console.log(mergedDocuments);
 			return {
 				source: citation.source,
 				document: c,

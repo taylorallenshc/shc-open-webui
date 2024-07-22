@@ -22,7 +22,7 @@
 <div class="relative w-full max-w-md">
 	<div class="flex flex-wrap items-center border border-gray-300 rounded-md mt-2 space-x-2">
 		{#each selectedOptions as option}
-			<span class="flex items-center px-2 py-1 text-sm bg-stanford-light text-white rounded-full">
+			<span class="flex items-center px-2 py-1 text-sm bg-stanford-dark text-white rounded-full">
 				{option.label}
 				<button type="button" class="ml-1" on:click={() => removeOption(option)}> &times; </button>
 			</span>
@@ -47,7 +47,7 @@
 				<span>{option.label}</span>
 				{#if selectedOptions.includes(option)}
 					<svg
-						class="w-5 h-5 text-stanford-light"
+						class="w-5 h-5 text-stanford-dark"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"

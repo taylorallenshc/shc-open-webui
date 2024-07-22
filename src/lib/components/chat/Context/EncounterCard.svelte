@@ -3,7 +3,6 @@
 	export let strokeWidth = '2';
 	export let customStyles = '';
 	export let title = 'Encounter Length';
-
 	export let onSelect: () => void;
 </script>
 

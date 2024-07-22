@@ -50,6 +50,13 @@
 			formCompleted.set(true); // Set form completed flag
 		}, 500);
 	};
+
+	const encounterOptions = [
+		{ label: "Today's Encounter", value: 'today' },
+		{ label: '1 Month', value: '1month' },
+		{ label: '1 Year', value: '1year' },
+		{ label: 'All Time', value: 'alltime' }
+	];
 </script>
 
 {#key mounted}
@@ -75,62 +82,30 @@
 				<label for="timeframe" class="block text-sm font-medium leading-6 text-gray-900"
 					>Select Timeframe</label
 				>
-				<!-- <div class="pr-6 py-6 grid grid-cols-2 gap-4">
-					{#if timeframe == "Today's Encounter"}
+				<div class="pr-6 py-6 grid grid-cols-2 gap-4">
+					{#each encounterOptions as option}
 						<EncounterCard
-							onSelect={() => {
-								timeframe = "Today's Encounter";
-								console.log(timeframe);
-							}}
-							title={"Today's Encounter"}
-							customStyles="bg-stanford-dark text-white flex flex-col items-center justify-center rounded-md border border-muted p-4 cursor-pointer"
+							onSelect={() => (timeframe = option.value)}
+							title={option.label}
+							customStyles={`flex flex-col items-center justify-center rounded-md border border-muted p-4 cursor-pointer ${
+								timeframe === option.value ? 'bg-stanford-dark text-white' : ''
+							}`}
 						/>
-					{:else}
-						<EncounterCard
-							onSelect={() => {
-								timeframe = "Today's Encounter";
-								console.log(timeframe);
-							}}
-							title={"Today's Encounter"}
-							customStyles="flex flex-col items-center justify-center rounded-md border border-muted p-4 cursor-pointer"
-						/>
-					{/if}
-
-					<EncounterCard
-						onSelect={() => {
-							timeframe = '1 Month';
-							console.log(timeframe);
-						}}
-						title={'1 Month'}
-						customStyles="flex flex-col items-center justify-center rounded-md border border-muted p-4 cursor-pointer"
-					/>
-					<EncounterCard
-						onSelect={() => {
-							timeframe = '1 Year';
-							console.log(timeframe);
-						}}
-						title={'1 Year'}
-						customStyles="flex flex-col items-center justify-center rounded-md border border-muted p-4 cursor-pointer"
-					/>
-					<EncounterCard
-						onSelect={() => {
-							timeframe = 'All Time';
-							console.log(timeframe);
-						}}
-						title={'All Time'}
-						customStyles="flex flex-col items-center justify-center rounded-md border border-muted p-4 cursor-pointer"
-					/>
-				</div> -->
+					{/each}
+				</div>
 			</div>
 
 			<div class="col-span-2">
 				<label class="block text-sm font-medium text-gray-700">Data Types</label>
 				<MultiLeveledSelector {options} bind:selectedOptions={dataTypes} />
 			</div>
+
+			<div class="col-span-2">
+				<button
+					on:click={handleSubmit}
+					class="w-full mt-4 px-4 py-2 bg-stanford-dark text-white rounded-md">Submit</button
+				>
+			</div>
 		</div>
-		<button
-			on:click={handleSubmit}
-			class="mt-4 w-full px-4 py-2 bg-stanford-dark text-white rounded-md">Submit</button
-		>
 	</div>
 {/key}
