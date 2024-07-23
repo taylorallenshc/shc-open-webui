@@ -6,6 +6,13 @@
 	import auto_render from 'katex/dist/contrib/auto-render.mjs';
 	import 'katex/dist/katex.min.css';
 	import mermaid from 'mermaid';
+	import {
+		Accordion,
+		AccordionItem,
+		AccordionTrigger,
+		AccordionContent
+	} from '$lib/components/shadcn/accordion';
+	import Progress from '$lib/components/shadcn/progress/progress.svelte';
 
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
@@ -37,6 +44,7 @@
 	import CitationsModal from '$lib/components/chat/Messages/CitationsModal.svelte';
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import WebSearchResults from './ResponseMessage/WebSearchResults.svelte';
+	import { BookIcon, StickyNote } from 'lucide-svelte';
 
 	export let message;
 	export let siblings;
@@ -54,6 +62,12 @@
 	export let copyToClipboard: Function;
 	export let continueGeneration: Function;
 	export let regenerateResponse: Function;
+
+	let citationSimilarity = 0;
+	onMount(() => {
+		const timer = setTimeout(() => (citationSimilarity = 95), 500);
+		return () => clearTimeout(timer);
+	});
 
 	let model = null;
 	$: model = $models.find((m) => m.id === message.model);
@@ -364,6 +378,31 @@
 		generatingImage = false;
 	};
 
+	const highlightText = (text, highlights) => {
+		let highlightedText = '';
+		let lastIndex = 0;
+
+		highlights.forEach(([start, end]) => {
+			highlightedText += text.slice(lastIndex, start);
+			highlightedText += `<mark>${text.slice(start, end)}</mark>`;
+			lastIndex = end;
+		});
+
+		highlightedText += text.slice(lastIndex);
+		return highlightedText;
+	};
+
+	const handleAccordionChange = (event) => {
+		const { detail } = event;
+		const contentElement = document.getElementById(`citation-content-${detail}`);
+		if (contentElement) {
+			const result = example.results.find((res) => res.chunk_id === detail);
+			if (result) {
+				contentElement.innerHTML = highlightText(result.text, result.highlightedText);
+			}
+		}
+	};
+
 	$: if (!edit) {
 		(async () => {
 			await tick();
@@ -383,6 +422,58 @@
 			querySelector: '.mermaid'
 		});
 	});
+
+	const example = {
+		query: "what is my patient's primary disease",
+		top_k_results: 5,
+		results: [
+			{
+				chunk_id: '1',
+				name: 'Medical Records',
+				source: 'medical_records',
+				document_id: 'doc_123',
+				text: 'The primary disease diagnosed for the patient is Type 2 Diabetes Mellitus, which was established based on elevated fasting glucose levels and HbA1c.',
+				similarity_score: 0.92,
+				highlightedText: [37, 57] // Example indices for highlighted text
+			},
+			{
+				chunk_id: '2',
+				name: 'Case Studies',
+				source: 'case_studies',
+				document_id: 'doc_789',
+				text: "The patient's primary condition appears to be Chronic Obstructive Pulmonary Disease (COPD), noted by the persistent respiratory symptoms and airflow limitation.",
+				similarity_score: 0.89,
+				highlightedText: [37, 72] // Example indices for highlighted text
+			},
+			{
+				chunk_id: '3',
+				name: 'Diagnostic Reports',
+				source: 'diagnostic_reports',
+				document_id: 'doc_456',
+				text: 'Upon evaluation, the primary illness identified is Rheumatoid Arthritis, which aligns with the reported joint pain and swelling.',
+				similarity_score: 0.85,
+				highlightedText: [45, 64] // Example indices for highlighted text
+			},
+			{
+				chunk_id: '4',
+				name: 'Patient Interviews',
+				source: 'patient_interviews',
+				document_id: 'doc_112',
+				text: 'The patient has been primarily diagnosed with Major Depressive Disorder following a comprehensive mental health assessment.',
+				similarity_score: 0.83,
+				highlightedText: [45, 70] // Example indices for highlighted text
+			},
+			{
+				name: 'Health Summaries',
+				chunk_id: '5',
+				source: 'health_summaries',
+				document_id: 'doc_334',
+				text: 'Primary diagnosis: Hypertension, as indicated by consistently high blood pressure readings over multiple visits.',
+				similarity_score: 0.82,
+				highlightedText: [18, 30] // Example indices for highlighted text
+			}
+		]
+	};
 </script>
 
 <CitationsModal bind:show={showCitationModal} citation={selectedCitation} />
@@ -556,6 +647,37 @@
 									</div>
 								</div>
 							{/if}
+							<Accordion type="single" collapsible on:change={handleAccordionChange}>
+								{#each example.results as result, idx}
+									<AccordionItem
+										value={`citation-${result.chunk_id}`}
+										class="hover:bg-gray-200 px-6 rounded-lg"
+									>
+										<AccordionTrigger class="flex items-center justify-between">
+											<div class="flex items-center gap-2 whitespace-nowrap">
+												<StickyNote class="w-4 h-4" />
+												<span>{result.source}</span>
+											</div>
+											<div class="flex ml-auto px-6 gap-4">
+												<Progress value={result.similarity_score * 100} max={100} class="w-24" />
+												<span class="text-xs text-muted-foreground whitespace-nowrap"
+													>{(result.similarity_score * 100).toFixed(2)}% Similar</span
+												>
+											</div>
+										</AccordionTrigger>
+										<AccordionContent>
+											<div class="flex flex-col p-4 pb-6">
+												<div id={`citation-content-${result.chunk_id}`}>
+													{@html result.text}
+												</div>
+												<div class="text-xs text-muted-foreground pt-12">
+													Source: {result.source}, Document ID: {result.document_id}
+												</div>
+											</div>
+										</AccordionContent>
+									</AccordionItem>
+								{/each}
+							</Accordion>
 
 							{#if message.citations}
 								<div class="mt-1 mb-2 w-full flex gap-1 items-center flex-wrap">
@@ -732,6 +854,9 @@
 														viewBox="0 0 24 24"
 														xmlns="http://www.w3.org/2000/svg"
 														><style>
+															.highlight {
+																background-color: yellow;
+															}
 															.spinner_S1WN {
 																animation: spinner_MGfb 0.8s linear infinite;
 																animation-delay: -0.8s;
